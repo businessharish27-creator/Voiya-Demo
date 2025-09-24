@@ -1,0 +1,1116 @@
+/* Reset */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Arial', sans-serif;
+}
+
+body {
+overflow-x: hidden;
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    z-index: 100;
+}
+
+.header .logo img {
+    width: 120px;
+    filter: brightness(0) invert(1);
+}
+
+/* Navigation (default = hidden on mobile) */
+.nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: transparent;
+    transform: translateY(-200%);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.nav ul li a.active {
+    border-bottom: 2px solid #fff;
+}
+
+/* Show nav when header has .is-open */
+.header.is-open .nav {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Auth buttons */
+.auth {
+    display: none; /* hidden on mobile */
+}
+
+.auth button {
+    background: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 6px 15px;
+    cursor: pointer;
+    margin-left: 10px;
+    border-radius: 20px;
+}
+.auth .signup {
+    background: #fff;
+    color: #000;
+    padding: 6px 20px; /* Adjust padding for better fit */
+    width: 90px; /* Set a specific width */
+    text-align: center; /* Center the text */
+}
+
+/* Hamburger */
+.menu-home-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 28px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1100;
+}
+.menu-home-toggle .bar {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* --- Tablet/Desktop --- */
+@media (min-width: 768px) {
+    .menu-home-toggle {
+        display: none;
+    }
+
+    .nav {
+        position: static;
+        transform: none;
+        opacity: 1;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background: transparent;
+        gap: 2rem;
+    }
+
+    .nav ul {
+        flex-direction: row;
+        gap: 2rem;
+    }
+
+    .auth {
+        display: flex;
+        align-items: center;
+    }
+}
+
+/* Large Desktop */
+@media (min-width: 1200px) {
+    .nav ul {
+        gap: 3rem;
+    }
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 100vh; /* This ensures it fits the screen height */
+    overflow: hidden;
+}
+
+.hero img.hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 0;
+}
+
+.hero img.hero-bg.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.hero .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+.city-name {
+    position: absolute;
+    bottom: 30%;
+    right: 10%;
+    font-size: 3rem; /* 70px -> 4.375rem (assuming 16px base) */
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0.1875rem 0.75rem rgba(0, 0, 0, 0.6); /* 0px 3px 12px */
+    z-index: 3;
+}
+
+/* Side Menu */
+.side-menu {
+    position: absolute;
+    top: 50%;
+    left: 1.875rem; /* 30px -> 1.875rem */
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem; /* 20px -> 1.25rem */
+}
+
+.side-menu .line {
+    width: 0.0625rem; /* 1px -> 0.0625rem */
+    height: 15rem; /* 240px -> 15rem */
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(0.25rem); /* 4px -> 0.25rem */
+}
+
+.side-menu ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 15rem; /* 240px -> 15rem */
+}
+
+.side-menu ul li {
+    padding: 0.5rem 1rem; /* 8px 16px -> 0.5rem 1rem */
+    border: 0.0625rem solid rgba(255, 255, 255, 0.4); /* 1px -> 0.0625rem */
+    border-radius: 0.5rem; /* 8px -> 0.5rem */
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(0.25rem); /* 4px -> 0.25rem */
+    color: #fff;
+    font-size: 1rem; /* 16px -> 1rem */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    min-width: 7.5rem; /* 120px -> 7.5rem */
+    position: relative;
+}
+
+.side-menu ul li.active {
+    background: #fff;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    border-color: #fff;
+}
+
+.side-menu ul li.active::before {
+    content: '';
+    position: absolute;
+    left: -1.75rem; /* -28px -> -1.75rem */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0.9375rem; /* 15px -> 0.9375rem */
+    height: 0.125rem; /* 2px -> 0.125rem */
+    background: #fff;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 48rem) { /* 768px -> 48rem */
+    .hero {
+        height: 75vh; /* Reduced height for smaller screens */
+    }
+
+    .city-name {
+        font-size: 1.8rem; /* 40px -> 2.5rem */
+        bottom: 15%;
+        right: 5%;
+    }
+
+    .side-menu {
+        left: 1rem; /* 16px -> 1rem */
+        gap: 0.75rem; /* 12px -> 0.75rem */
+    }
+
+    .side-menu .line {
+        height: 10rem; /* 160px -> 10rem */
+    }
+
+    .side-menu ul {
+        height: 10rem; /* 160px -> 10rem */
+    }
+
+    .side-menu ul li {
+        padding: 0.375rem 0.75rem; /* 6px 12px -> 0.375rem 0.75rem */
+        font-size: 0.875rem; /* 14px -> 0.875rem */
+        min-width: 5rem; /* 80px -> 5rem */
+    }
+
+    .side-menu ul li.active::before {
+        left: -1.25rem; /* -20px -> -1.25rem */
+        width: 0.75rem; /* 12px -> 0.75rem */
+    }
+}
+
+@media (max-width: 30rem) { /* 480px -> 30rem */
+    .hero {
+        height: 50vh; /* Further reduced height */
+    }
+
+    .city-name {
+        font-size: 1.275rem; /* 30px -> 1.875rem */
+        bottom: 10%;
+        right: 2%;
+    }
+
+    .side-menu {
+        left: 0.5rem; /* 8px -> 0.5rem */
+        flex-direction: column;
+        gap: 0.5rem; /* 8px -> 0.5rem */
+    }
+
+    .side-menu .line {
+        display: none; /* Hide line on very small screens */
+    }
+
+    .side-menu ul {
+        height: auto;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .side-menu ul li {
+        padding: 0.25rem 0.5rem; /* 4px 8px -> 0.25rem 0.5rem */
+        font-size: 0.75rem; /* 12px -> 0.75rem */
+        min-width: 3.75rem; /* 60px -> 3.75rem */
+    }
+
+    .side-menu ul li.active::before {
+        display: none; /* Hide indicator on very small screens */
+    }
+}
+
+/* Footer and Search Bar Styling */
+footer {
+    position: absolute;
+    bottom: 2.5rem; /* 40px -> 2.5rem */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 5; /* Lower z-index to stay below hero and side menu */
+    background: transparent;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 0.5rem; /* 8px -> 0.5rem */
+    border-radius: 3.125rem; /* 50px -> 3.125rem */
+    box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.15); /* 0 4px 20px */
+    transition: all 0.4s ease-in-out;
+    gap: 0.5rem; /* Added gap between sections */
+    width: 40rem; /* Fixed width to contain centrally, adjust as needed */
+    max-width: 90%; /* Ensure it doesn't overflow on smaller screens */
+}
+
+.footer-section {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem; /* Uniform padding for consistent size */
+    background: transparent;
+    cursor: pointer;
+    flex: 1; /* Equal distribution of space */
+    text-align: center;
+    min-width: 0; /* Prevent overflow */
+}
+
+.footer-section i {
+    margin-right: 0.5rem; /* 8px -> 0.5rem */
+    color: #555;
+}
+
+.footer-section select, .footer-section span {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #555;
+    cursor: pointer;
+    font-size: 1rem; /* Consistent font size */
+    text-align: left; /* Align text to left within flex */
+    flex: 1; /* Allow text to fill space */
+}
+
+.date-input {
+    position: absolute;
+    opacity: 0;
+}
+
+.divider {
+    width: 0.0625rem; /* 1px -> 0.0625rem */
+    height: 1.5625rem; /* 25px -> 1.5625rem */
+    background-color: #e0e0e0;
+}
+
+.search-btn {
+    background: #333;
+    color: #fff;
+    border: none;
+    width: 2.8125rem; /* 45px -> 2.8125rem */
+    height: 2.8125rem; /* 45px -> 2.8125rem */
+    min-width: 2.8125rem; /* 45px -> 2.8125rem */
+    border-radius: 50%;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    font-size: 1rem; /* 16px -> 1rem */
+    margin-left: 0.5rem; /* 8px -> 0.5rem */
+}
+
+/* Responsive Media Queries */
+@media (max-width: 48rem) { /* 768px -> 48rem */
+    footer {
+        bottom: 1.5rem; /* 24px -> 1.5rem */
+    }
+
+    .search-bar {
+        flex-direction: column;
+        padding: 1rem; /* Increased padding for better spacing */
+        border-radius: 1.5rem; /* Adjusted for vertical layout */
+        width: 30%; /* Full width to fit content */
+        max-width: none; /* Remove max-width constraint */
+        align-items: stretch; /* Stretch sections vertically */
+        gap: 1rem; /* Increased gap for vertical stacking */
+    }
+
+    .footer-section {
+        padding: 0.75rem 1rem; /* Uniform padding */
+        justify-content: center; /* Center content vertically */
+        width: 100%;
+        text-align: center; /* Center text */
+    }
+
+    .footer-section i {
+        margin-right: 0.375rem; /* 6px -> 0.375rem */
+    }
+
+    .divider {
+        display: none; /* Remove dividers on smaller screens */
+    }
+
+    .search-btn {
+        width: 2.25rem; /* 36px -> 2.25rem */
+        height: 2.25rem; /* 36px -> 2.25rem */
+        min-width: 2.25rem; /* 36px -> 2.25rem */
+        font-size: 0.875rem; /* 14px -> 0.875rem */
+        margin-left: auto;
+        margin-top: 0.5rem; /* Align to right in vertical */
+    }
+}
+
+@media (max-width: 30rem) { /* 480px -> 30rem */
+    footer {
+        bottom: 1rem; /* 16px -> 1rem */
+    }
+
+    .search-bar {
+        padding: 0.75rem; /* Adjusted for very small screens */
+        width: 25%; /* Full width to ensure proper fit */
+        gap: 0.5rem; /* Adjusted gap for smaller screens */
+    }
+
+    .footer-section {
+        padding: 0.5rem 0.75rem; /* Reduced padding for compactness */
+        justify-content: center;
+    }
+
+    .footer-section i {
+        position: relative;
+        font-size: 50%;
+        margin-right: 0.25rem; /* 4px -> 0.25rem */
+    }
+
+    .footer-section select, .footer-section span {
+        font-size: 0.5rem; /* 14px -> 0.875rem */
+    }
+
+    .search-btn {
+        width: 1.875rem; /* 30px -> 1.875rem */
+        height: 1.875rem; /* 30px -> 1.875rem */
+        min-width: 1.875rem; /* 30px -> 1.875rem */
+        font-size: 0.75rem; /* 12px -> 0.75rem */
+    }
+}
+
+/* Modals */
+.modal {
+display: none;
+position: fixed;
+inset: 0;
+background: rgba(0,0,0,0.6);
+justify-content: center;
+align-items: center;
+z-index: 200; /* Ensure modals are on top */
+}
+
+/* MODIFIED: Added position relative */
+.modal-content {
+background: #fff;
+padding: 20px;
+border-radius: 12px;
+width: 300px;
+text-align: center;
+position: relative; /* This is crucial for positioning the close button */
+}
+
+.modal-content input {
+display: block;
+width: 100%;
+padding: 8px;
+margin: 10px 0;
+border: 1px solid #ccc;
+border-radius: 6px;
+}
+
+.modal-content button {
+width: 100%;
+padding: 10px;
+background: #000;
+color: #fff;
+border: none;
+border-radius: 6px;
+cursor: pointer;
+}
+
+.close {
+position: absolute;
+right: 15px; /* Adjusted position */
+top: 10px;   /* Adjusted position */
+cursor: pointer;
+font-size: 28px; /* Made it bigger */
+color: #aaa;
+}
+.close:hover {
+  color: #333;
+}
+
+/* world icon */
+/* MODIFIED: Reduced margin */
+.auth .lang-toggle {
+color: #fff;
+margin-left: 10px;
+font-size: 20px;
+cursor: pointer;
+}
+
+/*Destination CSS*/
+
+/* --- RESPONSIVE HEADER STYLES --- */
+
+.header-destination {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 4%;
+    box-sizing: border-box;
+}
+
+.header-destination .header-destination-nav {
+    position: fixed;
+    top: 70px; /* below header */
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background-color: #fff;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1.5rem;
+    box-sizing: border-box;
+}
+
+/* Hide nav by default on mobile */
+.header-destination .header-destination-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.header-destination-nav ul li a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    width: 100%;
+    display: block;
+}
+
+.header-destination-nav ul li a.active {
+    border-bottom: 2px solid #E58950;
+    color: #333;
+}
+
+/* Logo scaling */
+.logo_invert img {
+    max-width: 120px;
+    width: 100%;
+    display: block;
+}
+
+/* Hide placeholder on mobile */
+.logo-link, .header-placeholder {
+    width: auto;
+}
+
+/* --- Hamburger Menu --- */
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 28px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1100; /* above nav */
+}
+.menu-toggle .bar {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* When header is open */
+.header-destination.is-open .header-destination-nav {
+    transform: translateX(0);
+}
+.header-destination.is-open .menu-toggle .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.header-destination.is-open .menu-toggle .bar:nth-child(2) {
+    opacity: 0;
+}
+.header-destination.is-open .menu-toggle .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* --- Tablet/Desktop view --- */
+@media (min-width: 768px) {
+    .menu-toggle {
+        display: none;
+    }
+
+    .header-destination {
+        padding: 1rem 5%;
+    }
+
+    .header-destination .header-destination-nav {
+        position: static;
+        transform: none;
+        height: auto;
+        background-color: transparent;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+    }
+
+    .header-destination .header-destination-nav ul {
+        flex-direction: row;
+        gap: 2.5rem;
+        margin-left: 30%;
+    }
+
+    .header-destination .header-destination-nav ul li a {
+        font-size: 1rem;
+        padding: 0.3rem 0;
+        width: auto;
+    }
+
+    .header-placeholder {
+        display: block;
+        width: 120px;
+    }
+}
+
+/* --- Large Desktop --- */
+@media (min-width: 1200px) {
+    .header-destination {
+        padding: 1.2rem 6%;
+    }
+    .header-destination .header-destination-nav ul {
+        gap: 3rem;
+    }
+}
+
+/* Main Content Area */
+.destinations-page {
+    padding: 30px 50px;
+    max-width: 1400px;
+    margin: auto;
+    padding-top: 80px;
+}
+
+.destinations-page .sub-heading {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #E58950;
+  font-weight: 600;
+}
+
+.title-section h1 {
+    font-size: 2.2rem;
+    padding-bottom: 20px;
+}
+
+.filter-tabs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-tabs .tab {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    background-color: #f5f5f5;
+    border-radius: 25px; /* Rounded pill shape */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #555;
+    font-weight: 500;
+}
+
+.filter-tabs .tab i {
+    margin-right: 8px;
+}
+
+/* MODIFIED: Active tab style to use the orange color */
+.filter-tabs .tab.active,
+.filter-tabs .tab:hover {
+    background-color: #E58950; /* Differentiating orange color */
+    color: #fff;
+}
+
+/* Grid for the cards */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 30px;
+}
+
+  /* Individual Card Styling */
+  .destination-card {
+      background-color: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+      transition: transform 0.2s ease-in-out;
+  }
+
+  .destination-card:hover {
+      transform: translateY(-5px);
+  }
+
+  .card-image {
+      position: relative;
+  }
+
+  .card-image img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+  }
+
+  .wishlist-icon {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 36px;
+      height: 36px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: #333;
+  }
+  
+  /* 1. Makes the star icon in the rating section gold */
+  
+  .rating .fa-star {
+      color: #ffc107; /* A nice gold color */
+  }
+
+  /* 2. Changes heart to solid red on hover */
+  .wishlist-icon:hover .fa-heart {
+      color: red;
+      font-weight: 900; /* This makes the regular (outline) heart icon solid */
+  }
+
+  /* 3. Keeps the heart solid red when it has the 'active' class (after being clicked) */
+  .wishlist-icon.active .fa-heart {
+      color: red;
+      font-weight: 900; /* Makes it solid */
+  }
+
+  .card-content {
+      padding: 15px 20px 20px;
+  }
+
+  .card-content h3 {
+      margin: 0 0 8px 0;
+      font-size: 1.2rem;
+      color: #222;
+  }
+
+  .card-content .price {
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 16px;
+  }
+
+  .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      color: #777;
+      border-top: 1px solid #f0f0f0;
+      padding-top: 15px;
+  }
+
+/* NEW: Pagination Styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+    gap: 10px;
+}
+
+.pagination a {
+    text-decoration: none;
+    color: #555;
+    font-weight: bold;
+    display: grid;
+    place-items: center;
+    transition: all 0.3s ease;
+}
+
+.pagination .page-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.pagination .page-number:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.pagination .page-number.active {
+    background-color: #E58950;
+    color: #fff;
+}
+
+.pagination .arrow {
+    font-size: 1.2rem;
+    padding: 0 10px;
+}
+
+/*details page*/
+
+/* Resorts Highlight Section */
+.resorts-highlight {
+    max-width: 1300px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+@media (max-width: 768px) {
+  .resorts-highlight .sub-heading{
+    margin-top: 15% !important;
+  }
+}
+
+@media (max-width: 425px) {
+  .resorts-highlight .sub-heading{
+    margin-top: 30% !important;
+  }
+}
+
+.resorts-highlight .sub-heading {
+    color: #E58950;
+    font-weight: 600;
+    margin-bottom: 8px;
+    margin-top: 10%;
+}
+
+.resorts-highlight .section-title {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+.resort-card {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    background: #fdfdfd;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+    padding: 20px;
+}
+
+/* Left Image Section */
+.resort-images {
+    flex: 1 1 50%;
+    min-width: 320px;
+}
+
+.resort-images .main-image {
+    position: relative;
+}
+
+.resort-images .main-image img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+}
+
+/* --- NEW: Navigation Arrows Styles --- */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.nav-arrow:hover {
+    background: #fff;
+}
+
+#prev-btn {
+    left: 15px;
+}
+
+#next-btn {
+    right: 15px;
+}
+/* --- END NEW --- */
+
+
+.resort-images .resort-meta {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none; /* Allows clicks to pass through to arrows */
+}
+
+.resort-meta .location, .resort-meta .rating {
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    pointer-events: all; /* Make these clickable again if needed */
+}
+
+.resort-meta .rating {
+    background: #fff;
+    color: #333;
+    font-weight: 600;
+}
+
+.resort-images .wishlist-icon {
+    position: absolute;
+    top: 15%;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.wishlist-icon .fa-solid {
+    color: red;
+}
+
+
+/* --- UPDATED: Thumbnails Styles --- */
+.thumb-gallery {
+    margin-top: 15px;
+    display: flex;
+    gap: 12px;
+}
+
+.thumb-gallery img {
+    width: calc(33.333% - 8px); /* Adjust width for gap */
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    filter: blur(2px) opacity(0.7); /* Blurred and slightly transparent */
+    transition: all 0.3s ease;
+}
+
+.thumb-gallery img:hover {
+    filter: blur(0) opacity(1); /* Remove blur and opacity on hover */
+    transform: scale(1.05);
+    border-color: #E58950; /* Highlight with border on hover */
+}
+/* --- END UPDATED --- */
+
+
+/* Right Details Section */
+.resort-details {
+    flex: 1 1 45%;
+}
+
+.resort-details h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.resort-details .description {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.resort-info {
+    margin-bottom: 25px;
+}
+
+.resort-info div {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+.highlights, .amenities {
+    margin: 25px 0;
+}
+
+.highlights h4, .amenities h4 {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+}
+
+.highlights ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.highlights ul li {
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 0.95rem;
+    background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20fill%3D%22%23E58950%22%3E%3Cpath%20d%3D%22M9%2016.17L4.83%2012l-1.42%201.41L9%2019%2021%207l-1.41-1.41z%22/%3E%3C/svg%3E') no-repeat left center;
+    padding-left: 25px;
+}
+
+.amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.amenities-grid span i {
+    margin-right: 10px;
+    color: #E58950;
+    width: 20px; /* Align icons */
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #E58950;
+    margin-top: 30px;
+    text-align: right;
+}

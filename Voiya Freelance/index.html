@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>The Voyia</title>
+ <link rel="stylesheet" href="./assets/css/style.css" />
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <header id="main-home-header" class="header">
+    <a href="index.html" class="logo-link">
+        <div class="logo">
+            <img src="assets/images/logo.svg" alt="The Voyia Logo" />
+        </div>
+    </a>
+
+    <nav class="nav">
+        <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="destination.html">Destinations</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Help</a></li>
+        </ul>
+    </nav>
+
+    <div class="auth">
+        <button class="login" onclick="openLogin()">Login</button>
+        <button class="signup" onclick="openSignup()">Sign up</button>
+        <i class="fa-solid fa-globe lang-toggle"></i>
+    </div>
+
+    <button id="menu-home-toggle" class="menu-home-toggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+</header>
+
+  <div class="side-menu">
+    <div class="line"></div>
+    <ul>
+      <li data-place="Abu Dhabi">Abu Dhabi</li>
+      <li class="active" data-place="Dubai">Dubai</li>
+      <li data-place="Sharjah">Sharjah</li>
+      <li data-place="Ajman">Ajman</li>
+    </ul>
+  </div>
+
+ <section class="hero">
+  <div class="overlay"></div>
+  <div class="city-name">Dubai</div>
+  <img src="assets/images/homepage/heroAbuDhabi.jpg" alt="Abu Dhabi" class="hero-bg">
+  <img src="assets/images/homepage/heroDubai.jpg" alt="Dubai" class="hero-bg active">
+  <img src="assets/images/homepage/heroSharjah.jpg" alt="Sharjah" class="hero-bg">
+  <img src="assets/images/homepage/heroAjman.jpg" alt="Ajman" class="hero-bg">
+ </section>
+
+  <footer>
+    <div class="search-bar">
+      <!-- Destination -->
+      <div class="footer-section">
+        <i class="fa-solid fa-location-dot"></i>
+        <select>
+          <option value="" disabled selected hidden>Destination</option>
+          <option value="abu-dhabi">Abu Dhabi</option>
+          <option value="dubai">Dubai</option>
+          <option value="sharjah">Sharjah</option>
+          <option value="ajman">Ajman</option>
+        </select>
+      </div>
+      <div class="divider"></div>
+
+    <!-- Check In -->
+    <div class="footer-section calendar" id="checkInWrapper">
+      <i class="fa-solid fa-clock"></i>
+      <span id="checkInText">Check In</span>
+      <input type="date" id="checkInDate" class="date-input">
+    </div>
+    <div class="divider"></div>
+
+    <!-- Check Out -->
+    <div class="footer-section calendar" id="checkOutWrapper">
+      <i class="fa-solid fa-clock"></i>
+      <span id="checkOutText">Check Out</span>
+      <input type="date" id="checkOutDate" class="date-input">
+    </div>
+    <div class="divider"></div>
+
+
+      <!-- Guests -->
+      <div class="footer-section">
+        <i class="fa-solid fa-user-group"></i>
+        <select>
+          <option value="" disabled selected hidden>Guests</option>
+          <option value="1">1 Guest</option>
+          <option value="2">2 Guests</option>
+          <option value="3">3 Guests</option>
+          <option value="4">4 Guests</option>
+        </select>
+      </div>
+
+      <!-- Search -->
+       <a href="destination.html">
+      <button class="search-btn">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button></a>
+    </div>
+  </footer>
+
+
+  <div class="modal" id="loginModal">
+   <div class="modal-content">
+    <span class="close" onclick="closeModal('loginModal')">&times;</span>
+    <h2>Login</h2>
+    <input type="text" placeholder="Email">
+    <input type="password" placeholder="Password">
+    <button>Login</button>
+   </div>
+  </div>
+
+  <div class="modal" id="signupModal">
+   <div class="modal-content">
+    <span class="close" onclick="closeModal('signupModal')">&times;</span>
+    <h2>Sign Up</h2>
+    <input type="text" placeholder="Full Name">
+    <input type="email" placeholder="Email">
+    <input type="password" placeholder="Password">
+    <button>Sign Up</button>
+   </div>
+  </div>
+
+ <script src="./assets/js/script.js"></script>
+</body>
+</html>
